@@ -1,0 +1,73 @@
+---
+title: "I Explore"
+author: "Muhammad Aswan Syahputra"
+date: "23 Juni 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 2 Introduction
+Tidak ada latihan.
+
+## 3 Data Visualisation
+Mengaktifkan paket `tidyverse`:
+```{r, echo=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+Melihat sebagian data `mpg` dari paket `ggplot2`:
+```{r}
+ggplot2::mpg
+```
+
+Membuat scatterplot dari variabel `displ` vs hwy:
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+**Latihan 3.2.4**
+
+1. Run ggplot(data = mpg). What do you see? (*Jalankan ggplot(data = mpg). Apa yang anda lihat?*)
+```{r}
+ggplot(data = mpg)
+```
+
+Kode tersebut menghasilkan gambar latar untuk plot.
+
+2. How many rows are in mpg? How many columns? (*Terdapat berapa baris dan kolom pada data mpg?*)
+```{r}
+nrow(mpg)
+ncol(mpg)
+```
+Terdapat 234 baris dan 11 kolom pada data `mpg`.
+
+3. What does the drv variable describe? Read the help for ?mpg to find out. (*Apa informasi yang dimiliki variabel drv? Baca informasi pada laman bantuan dengan menjalankan ?mpg.*)
+```{r}
+?mpg
+```
+Variabel `drv` memiliki informasi tentang *wheel-drive* yang terdiri atas tiga level, yaitu f (*front-wheel drive*), r (*rear wheel drive*), dan 4 (4wd).
+
+4. Make a scatterplot of hwy vs cyl. (*Buatlah scatterplot untuk variabel hwy vs cyl.*)
+```{r}
+ggplot(mpg) +
+  geom_point(aes(x = hwy, y = cyl))
+```
+
+5. What happens if you make a scatterplot of class vs drv? Why is the plot not useful? (*Apa yang terjadi jika anda membuat scatterplot dari variabel class vs drv? Mengapa grafik tersebut tidak berguna?*)
+```{r}
+ggplot(mpg) +
+  geom_point(aes(x = class, y = drv))
+```
+
+Gambar diatas tidak berguna karena baik variabel `class` dan `drv` merupakan data kategori, sehingga grafik yang dihasilkan adalah pemetaan kombinasi antara kedua variabel tersebut.
+
+Menambah *aesthetic* warna berdasarkan variabel `class` untuk scatterplot `displ` vs `hwy:
+```{r}
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy, colour = class))
+```
+
