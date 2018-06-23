@@ -19,12 +19,12 @@ Mengaktifkan paket `tidyverse`:
 library(tidyverse)
 ```
 
-Melihat sebagian data `mpg` dari paket `ggplot2`:
+Melihat sebagian data mpg dari paket ggplot2:
 ```{r}
 ggplot2::mpg
 ```
 
-Membuat scatterplot dari variabel `displ` vs `hwy`:
+Membuat scatterplot dari variabel displ vs hwy:
 ```{r}
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy))
@@ -44,13 +44,13 @@ Kode tersebut menghasilkan gambar latar untuk plot.
 nrow(mpg)
 ncol(mpg)
 ```
-Terdapat 234 baris dan 11 kolom pada data `mpg`.
+Terdapat 234 baris dan 11 kolom pada data mpg.
 
 3. What does the drv variable describe? Read the help for ?mpg to find out. (*Apa informasi yang dimiliki variabel drv? Baca informasi pada laman bantuan dengan menjalankan ?mpg.*)
 ```{r}
 ?mpg
 ```
-Variabel `drv` memiliki informasi tentang *wheel-drive* yang terdiri atas tiga level, yaitu f (*front-wheel drive*), r (*rear wheel drive*), dan 4 (4wd).
+Variabel drv memiliki informasi tentang *wheel-drive* yang terdiri atas tiga level, yaitu f (*front-wheel drive*), r (*rear wheel drive*), dan 4 (4wd).
 
 4. Make a scatterplot of hwy vs cyl. (*Buatlah scatterplot untuk variabel hwy vs cyl.*)
 ```{r}
@@ -64,9 +64,9 @@ ggplot(mpg) +
   geom_point(aes(x = class, y = drv))
 ```
 
-Gambar diatas tidak berguna karena baik variabel `class` dan `drv` merupakan data kategori, sehingga grafik yang dihasilkan adalah pemetaan kombinasi antara kedua variabel tersebut.
+Gambar diatas tidak berguna karena baik variabel class dan drv merupakan data kategori, sehingga grafik yang dihasilkan adalah pemetaan kombinasi antara kedua variabel tersebut.
 
-Menambah *aesthetic* warna berdasarkan variabel `class` untuk scatterplot `displ` vs `hwy:
+Menambah *aesthetic* warna berdasarkan variabel class untuk scatterplot displ vs hwy:
 ```{r}
 ggplot(mpg) +
   geom_point(aes(x = displ, y = hwy, colour = class))

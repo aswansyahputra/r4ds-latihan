@@ -13,18 +13,18 @@ Tidak ada latihan.
 
 Mengaktifkan paket `tidyverse`:
 
-    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+    ## ── Attaching packages ────────────────────────────────────── tidyverse 1.2.1 ──
 
     ## ✔ ggplot2 2.2.1.9000     ✔ purrr   0.2.5     
     ## ✔ tibble  1.4.2          ✔ dplyr   0.7.5     
     ## ✔ tidyr   0.8.1          ✔ stringr 1.3.1     
     ## ✔ readr   1.1.1          ✔ forcats 0.3.0
 
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ───────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
 
-Melihat sebagian data `mpg` dari paket `ggplot2`:
+Melihat sebagian data mpg dari paket ggplot2:
 
 ``` r
 ggplot2::mpg
@@ -45,7 +45,7 @@ ggplot2::mpg
     ## 10 audi         a4 quat…   2    2008     4 manual… 4        20    28 p    
     ## # ... with 224 more rows, and 1 more variable: class <chr>
 
-Membuat scatterplot dari variabel `displ` vs `hwy`:
+Membuat scatterplot dari variabel displ vs hwy:
 
 ``` r
 ggplot(data = mpg) + 
@@ -80,7 +80,7 @@ ncol(mpg)
 
     ## [1] 11
 
-Terdapat 234 baris dan 11 kolom pada data `mpg`.
+Terdapat 234 baris dan 11 kolom pada data mpg.
 
 1.  What does the drv variable describe? Read the help for ?mpg to find out. (*Apa informasi yang dimiliki variabel drv? Baca informasi pada laman bantuan dengan menjalankan ?mpg.*)
 
@@ -88,7 +88,7 @@ Terdapat 234 baris dan 11 kolom pada data `mpg`.
 ?mpg
 ```
 
-Variabel `drv` memiliki informasi tentang *wheel-drive* yang terdiri atas tiga level, yaitu f (*front-wheel drive*), r (*rear wheel drive*), dan 4 (4wd).
+Variabel drv memiliki informasi tentang *wheel-drive* yang terdiri atas tiga level, yaitu f (*front-wheel drive*), r (*rear wheel drive*), dan 4 (4wd).
 
 1.  Make a scatterplot of hwy vs cyl. (*Buatlah scatterplot untuk variabel hwy vs cyl.*)
 
@@ -108,9 +108,9 @@ ggplot(mpg) +
 
 ![](I_explore_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
-Gambar diatas tidak berguna karena baik variabel `class` dan `drv` merupakan data kategori, sehingga grafik yang dihasilkan adalah pemetaan kombinasi antara kedua variabel tersebut.
+Gambar diatas tidak berguna karena baik variabel class dan drv merupakan data kategori, sehingga grafik yang dihasilkan adalah pemetaan kombinasi antara kedua variabel tersebut.
 
-Menambah *aesthetic* warna berdasarkan variabel `class` untuk scatterplot `displ` vs \`hwy:
+Menambah *aesthetic* warna berdasarkan variabel class untuk scatterplot displ vs hwy:
 
 ``` r
 ggplot(mpg) +
