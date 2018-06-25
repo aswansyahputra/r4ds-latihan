@@ -4,6 +4,8 @@ author: "Muhammad Aswan Syahputra"
 date: "23 Juni 2018"
 output: 
   github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -15,16 +17,19 @@ Tidak ada latihan.
 
 ## 3 Data Visualisation
 Mengaktifkan paket `tidyverse`:
+
 ```{r, echo=FALSE, warning=FALSE}
 library(tidyverse)
 ```
 
 Melihat sebagian data mpg dari paket ggplot2:
+
 ```{r}
 ggplot2::mpg
 ```
 
 Membuat scatterplot dari variabel displ vs hwy:
+
 ```{r}
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy))
@@ -40,25 +45,31 @@ ggplot(data = mpg)
 Kode tersebut menghasilkan gambar latar untuk plot.
 
 2. How many rows are in mpg? How many columns? (*Terdapat berapa baris dan kolom pada data mpg?*)
+
 ```{r}
 nrow(mpg)
 ncol(mpg)
 ```
+
 Terdapat 234 baris dan 11 kolom pada data mpg.
 
 3. What does the drv variable describe? Read the help for ?mpg to find out. (*Apa informasi yang dimiliki variabel drv? Baca informasi pada laman bantuan dengan menjalankan ?mpg.*)
+
 ```{r}
 ?mpg
 ```
+
 Variabel drv memiliki informasi tentang *wheel-drive* yang terdiri atas tiga level, yaitu f (*front-wheel drive*), r (*rear wheel drive*), dan 4 (4wd).
 
 4. Make a scatterplot of hwy vs cyl. (*Buatlah scatterplot untuk variabel hwy vs cyl.*)
+
 ```{r}
 ggplot(mpg) +
   geom_point(aes(x = hwy, y = cyl))
 ```
 
 5. What happens if you make a scatterplot of class vs drv? Why is the plot not useful? (*Apa yang terjadi jika anda membuat scatterplot dari variabel class vs drv? Mengapa grafik tersebut tidak berguna?*)
+
 ```{r}
 ggplot(mpg) +
   geom_point(aes(x = class, y = drv))
@@ -67,6 +78,7 @@ ggplot(mpg) +
 Gambar diatas tidak berguna karena baik variabel class dan drv merupakan data kategori, sehingga grafik yang dihasilkan adalah pemetaan kombinasi antara kedua variabel tersebut.
 
 Menambah *aesthetic* warna berdasarkan variabel class untuk scatterplot displ vs hwy:
+
 ```{r}
 ggplot(mpg) +
   geom_point(aes(x = displ, y = hwy, colour = class))
@@ -75,6 +87,7 @@ ggplot(mpg) +
 **Latihan 3.3.1**
 
 1. What’s gone wrong with this code? Why are the points not blue? (*Apa yang salah dengan kode berikut? Mengapa titik pada grafik tidak berwarna biru?*)
+
 ```{r}
 ggplot(data = mpg) + 
 geom_point(mapping = aes(x = displ, y = hwy, color = "blue"))
@@ -87,12 +100,64 @@ ggplot(data = mpg) +
 geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
 ```
 
-2. Which variables in mpg are categorical? Which variables are continuous? (Hint: type ?mpg to read the documentation for the dataset). How can you see this information when you run mpg?
+2. Which variables in mpg are categorical? Which variables are continuous? (Hint: type ?mpg to read the documentation for the dataset). How can you see this information when you run mpg? (*Variabel mana dari data mpg yang merupakan variabel kategori? Manakah yang merupakan variabel kontinyu? (Petunjuk: jalankan ?mpg untuk melihat dokumentasi dataset. Bagaimana cara anda mendapatkan informasi tersebut saat menjalankan kode `mpg`?)*)
 
-3. Map a continuous variable to color, size, and shape. How do these aesthetics behave differently for categorical vs. continuous variables?
+```{r}
+mpg
+```
 
-4. What happens if you map the same variable to multiple aesthetics?
+Variabel kategori: *manufacturer, model, trans, drv, fl, dan class*
+Variabel kontinyu: *displ, year, cyl, cty, dan hwy*
+Informasi tersebut dapat diketahui dengan membaca tipe kolom saat menjalankan fungsi `mpg`, yaitu <chr> untuk variabel kategori dan <dbl> dan <int> untuk variabel kontinyu.
 
-5. What does the stroke aesthetic do? What shapes does it work with? (Hint: use ?geom_point)
+3. Map a continuous variable to color, size, and shape. How do these aesthetics behave differently for categorical vs. continuous variables? (*Buatlah grafik dengan menggunakan estetik warna, ukuran, dan bentuk untuk variabel kontinyu. Bagaimana penerapakn estetik tersebut untuk variabel kategori vs kontinyu?*)
 
-6. What happens if you map an aesthetic to something other than a variable name, like aes(colour = displ < 5)?
+**Estetik Warna**
+
+```{r}
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy, color = year))
+```
+
+**Estetik Ukuran**
+
+```{r}
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy, size = year))
+```
+
+**Estetik Bentuk**
+
+```{r,error=TRUE}
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy, shape = year))
+```
+
+Estetik warna dan ukuran dapat diterapkan untuk variabel kontinyu, sedangkan estetik bentuk hanya bisa digunakan untuk variabel kategori.
+
+4. What happens if you map the same variable to multiple aesthetics? (*Apa yang terjadi jika anda menggunakan estetik ganda untuk variabel yang sama?*)
+
+```{r}
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy, color = year, size = year))
+```
+
+Estetik ganda dapat bekerja dengan baik untuk satu variabel yang sama. Grafik akan menampilkan legenda untuk tiap dengan estetik yang digunakan.
+
+5. What does the stroke aesthetic do? What shapes does it work with? (Hint: use ?geom_point) (*Apa yang terjadi jika anda menggunakan estetik stroke? Dengan bentuk titik apa estetik tersebut dapat bekerja?*)
+
+```{r}
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy, stroke = cty), shape = 21)
+```
+
+Estetik *stroke* akan membuat tebal garis tepi yang berbeda. Estetik ini dapat bekerja untuk bentuk titik yang memiliki garis tepi.
+
+6. What happens if you map an aesthetic to something other than a variable name, like aes(colour = displ < 5)? (*Apa yang terjadi jika anda menggunakan estetik bukan pada nama variabel, seperti aes(colour = displ < 5)?*)
+
+```{r}
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy, colour = displ < 5))
+```
+
+Estetik juga dapat digunakan untuk ekspresi logika. Pada grafik tersebut, warna berbeda akan diberikan untuk nilai dibawah 5 (dengan label TRUE) dan diatas 5 (dengan nilai FALSE)
